@@ -1,0 +1,85 @@
+@import "../../../styles/variables";
+
+button {
+  @apply rounded-full py-2 px-4 border border-transparent text-center text-sm text-white transition-all;
+}
+.btn-primary {
+  background-color: $primary;
+  padding: 13px 30px;
+  &:hover {
+    background-color: $primary-light;
+  }
+}
+
+.btn-primary-icon {
+  background-color: $primary;
+  @apply flex items-center justify-center text-white;
+  color: white;
+  svg {
+    @apply w-8 h-8;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 0.5rem;
+    fill: $primary;
+    padding: 11px;
+    path {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &:hover {
+    background-color: $primary-light;
+  }
+}
+
+.btn-default {
+  padding: 13px 30px;
+  background-color: #f9fafe;
+  color: #7e88c3;
+  &:hover {
+    background-color: #dfe3fa;
+  }
+}
+
+.btn-secondary {
+  padding: 13px 30px;
+  background-color: #373b53;
+  color: #888eb0;
+  &:hover {
+    background-color: #0c0e16;
+  }
+}
+
+.btn-danger {
+  padding: 13px 30px;
+  background-color: #ec5757;
+  color: white;
+  &:hover {
+    background-color: #ff9797;
+  }
+}
+
+.btn-default-icon {
+  background-color: #f9fafe;
+  @apply flex items-center justify-center text-white w-full;
+  color: #7e88c3;
+  svg {
+    @apply w-8 h-8;
+
+    margin-right: 0.5rem;
+    fill: #7e88c3;
+    padding: 11px;
+    path {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &:hover {
+    background-color: #dfe3fa;
+  }
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
