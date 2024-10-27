@@ -40,7 +40,7 @@ Add a screenshot of your solution here.
 ### Links
 
 - Solution URL: [Add solution URL here](https://github.com/SnezanaL/ng-invoice-app)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://github.com/SnezanaL/ng-invoice-app)
 
 ## My Process
 

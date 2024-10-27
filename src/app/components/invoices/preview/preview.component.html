@@ -1,0 +1,11 @@
+<div *ngIf="invoice">
+  <h2>Invoice Details</h2>
+  <p><strong>ID:</strong> {{ invoice.id }}</p>
+  <p><strong>Client Name:</strong> {{ invoice.clientName }}</p>
+  <p><strong>Date:</strong> {{ invoice.createdAt }}</p>
+  <p><strong>Total Amount:</strong> {{ invoice.total }}</p>
+  <p><strong>Status:</strong> {{ invoice.status }}</p>
+</div>
+<div *ngIf="!invoice">
+  <p>Loading...</p>
+</div>

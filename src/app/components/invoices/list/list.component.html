@@ -89,10 +89,10 @@
               >{{ value.status }}</span
             >
           </ng-template>
-          <ng-template slot="actions" let-value="filteredData">
+          <ng-template slot="actions" let-value="data">
             <div class="flex items-center justify-center">
-              <a routerLink="/apps/invoice/edit" class="hover:text-info">
-                <icon-arrow-right> </icon-arrow-right>
+              <a [routerLink]="['/invoices', value.id]" class="hover:text-info">
+                <icon-arrow-right></icon-arrow-right>
               </a>
             </div>
           </ng-template>

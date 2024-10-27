@@ -7,6 +7,8 @@ import { InvoiceService } from '../../../services/invoice.service';
 import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right';
 import { ButtonComponent } from '../../button/button.component';
 import { filter } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { Invoice } from '../invoice.model';
 
 @Component({
   selector: 'app-list',
@@ -19,6 +21,7 @@ import { filter } from 'rxjs';
     HttpClientModule,
     IconArrowRightComponent,
     ButtonComponent,
+    RouterModule,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -26,21 +29,16 @@ import { filter } from 'rxjs';
 })
 export class ListComponent implements OnInit {
   data: any = [];
-  invoices: any = [];
+  invoices: Invoice[] = [];
 
   constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit() {
-    this.invoiceService.getData().subscribe(
-      (response) => {
-        this.invoices = response;
-        this.data = response;
-        console.log(this.data);
-      },
-      (error) => {
-        console.error('Error loading data:', error);
-      }
-    );
+    this.invoiceService.getData().subscribe((response) => {
+      this.invoices = response;
+      this.data = response;
+      console.log(this.data);
+    });
   }
   search = '';
   cols = [
@@ -52,11 +50,14 @@ export class ListComponent implements OnInit {
     {
       field: 'actions',
       title: 'Actions',
-      sort: false,
       headerClass: 'justify-center',
       width: '30px',
     },
   ];
+
+  viewInvoice(e: any) {
+    alert(e);
+  }
 
   selectedStatus = '';
 
@@ -64,7 +65,7 @@ export class ListComponent implements OnInit {
     this.data = this.invoices;
     if (this.selectedStatus) {
       this.data = this.invoices.filter(
-        (invoice: any) => invoice.status === this.selectedStatus
+        (invoice: Invoice) => invoice.status === this.selectedStatus
       );
     } else {
       this.data = this.invoices; // Reset filter

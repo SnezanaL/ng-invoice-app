@@ -84,6 +84,15 @@ module.exports = {
           },
         ],
       },
+      keyframes: {
+        fadeInFromTop: {
+          "0%": { opacity: "0", transform: "translateY(-40px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeInFromTop: "fadeInFromTop 2s ease-in-out",
+      },
     },
   },
   plugins: [],
