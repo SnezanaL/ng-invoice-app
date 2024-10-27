@@ -6,9 +6,14 @@ import { DataTableModule } from '@bhplugin/ng-datatable';
 import { InvoiceService } from '../../../services/invoice.service';
 import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right';
 import { ButtonComponent } from '../../button/button.component';
-import { filter } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { Invoice } from '../invoice.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../state/app.state';
+import { InvoiceState } from '../../../state/reducers/invoice.reducer';
+import { loadInvoices } from '../../../state/actions/invoice.actions';
+import { selectAllInvoices } from '../../../state/invoice.selector';
 
 @Component({
   selector: 'app-list',
@@ -29,16 +34,25 @@ import { Invoice } from '../invoice.model';
 })
 export class ListComponent implements OnInit {
   data: any = [];
-  invoices: Invoice[] = [];
+  invoices$: Observable<Invoice[]>;
 
-  constructor(private invoiceService: InvoiceService) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    private store: Store<AppState>
+  ) {
+    this.invoices$ = this.store.select(selectAllInvoices);
+    console.log(
+      '🚀 ~ ListComponent ~ this.invoices$:',
+      this.invoices$.subscribe((data) => console.log(data))
+    );
+  }
 
   ngOnInit() {
-    this.invoiceService.getData().subscribe((response) => {
-      this.invoices = response;
-      this.data = response;
-      console.log(this.data);
-    });
+    // this.invoiceService.getData().subscribe((response) => {
+    //   this.invoices = response;
+    //   this.data = response;
+    //   console.log(this.data);
+    // });
   }
   search = '';
   cols = [
@@ -61,14 +75,14 @@ export class ListComponent implements OnInit {
 
   selectedStatus = '';
 
-  filterByStatus() {
-    this.data = this.invoices;
-    if (this.selectedStatus) {
-      this.data = this.invoices.filter(
-        (invoice: Invoice) => invoice.status === this.selectedStatus
-      );
-    } else {
-      this.data = this.invoices; // Reset filter
-    }
-  }
+  // filterByStatus() {
+  //   this.data = this.invoices;
+  //   if (this.selectedStatus) {
+  //     this.data = this.invoices.filter(
+  //       (invoice: Invoice) => invoice.status === this.selectedStatus
+  //     );
+  //   } else {
+  //     this.data = this.invoices; // Reset filter
+  //   }
+  // }
 }

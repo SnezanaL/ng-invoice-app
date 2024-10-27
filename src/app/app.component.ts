@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { Store } from '@ngrx/store';
+import { loadInvoices } from './state/actions/invoice.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +15,15 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 export class AppComponent {
   title = 'ng-invoice-app';
 
-  constructor() {
-    console.log('🚀 ~ AppComponent ~ add:');
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(loadInvoices());
+
+    console.log(
+      '🚀 ~ AppComponent ~ ngOnInit ~ this.store:',
+      this.store.subscribe((data) => console.log(data))
+    );
   }
   createInvoice() {
     console.log('New Invoice Created');
