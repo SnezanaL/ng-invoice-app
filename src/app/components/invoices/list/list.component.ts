@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataTableModule } from '@bhplugin/ng-datatable';
 import { InvoiceService } from '../../../services/invoice.service';
+import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,7 @@ import { InvoiceService } from '../../../services/invoice.service';
     DataTableModule,
     CommonModule,
     HttpClientModule,
+    IconArrowRightComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -36,13 +38,14 @@ export class ListComponent implements OnInit {
     { field: 'id', title: 'Invoice' },
     { field: 'createdAt', title: 'Date' },
     { field: 'clientName', title: 'Name' },
-    { field: 'total', title: 'Amount', headerClass: 'justify-end' },
+    { field: 'total', title: 'Amount' },
     { field: 'status', title: 'Status' },
     {
       field: 'actions',
       title: 'Actions',
       sort: false,
       headerClass: 'justify-center',
+      width: '30px',
     },
   ];
 }

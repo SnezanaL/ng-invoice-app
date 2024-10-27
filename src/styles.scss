@@ -5,14 +5,38 @@
 @tailwind components;
 @tailwind utilities;
 
-// Custom styles
+@layer components {
+  body {
+    font-family: "League Spartan", sans-serif;
+    color: $licorice-black;
+  }
 
-// Body
-body {
-  font-family: "League Spartan", sans-serif;
-  color: $licorice-black;
+  p {
+    @apply text-body;
+  }
+
+  .badge-outline-success {
+    @apply bg-success-light text-success  px-5 py-2 rounded-md;
+  }
+  .badge-outline-warning {
+    @apply bg-warning-light text-warning  px-5 py-2 rounded-md;
+  }
+  .badge-outline-info {
+    @apply bg-info-light text-info  px-5 py-2 rounded-md;
+  }
 }
 
-p {
-  @apply text-body;
+.bh-datatable .bh-table-responsive table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0px 15px;
+}
+.tableRow23 {
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  background-color: #ffffff;
+  height: 72px;
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
 }

@@ -16,6 +16,26 @@ module.exports = {
         softRed: "#ff9797",
         ghostWhite: "#f8f9fa",
         black: "#141625",
+        success: {
+          DEFAULT: "#33D69F",
+          light: "#f4fdfa",
+          "dark-light": "rgba(0,171,85,.15)",
+        },
+        danger: {
+          DEFAULT: "#e7515a",
+          light: "#fff5f5",
+          "dark-light": "rgba(231,81,90,.15)",
+        },
+        warning: {
+          DEFAULT: "#FF8F00",
+          light: "#fff9f0",
+          "dark-light": "rgba(226,160,63,.15)",
+        },
+        info: {
+          DEFAULT: "#373B53",
+          light: "#f8f8fb",
+          // "dark-light": "rgba(33,150,243,.15)",
+        },
       },
       fontFamily: {
         spartan: ['"League Spartan"', "sans-serif"],
