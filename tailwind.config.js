@@ -52,7 +52,7 @@ module.exports = {
           "33px",
           {
             lineHeight: "1.5",
-            letterSpacing: "1px",
+            letterSpacing: "-1px",
           },
         ],
         "heading-m": [

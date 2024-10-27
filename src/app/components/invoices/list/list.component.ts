@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { DataTableModule } from '@bhplugin/ng-datatable';
 import { InvoiceService } from '../../../services/invoice.service';
 import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right';
+import { ButtonComponent } from '../../button/button.component';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -16,22 +18,29 @@ import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right'
     CommonModule,
     HttpClientModule,
     IconArrowRightComponent,
+    ButtonComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   providers: [InvoiceService],
 })
 export class ListComponent implements OnInit {
-  data: any;
-  items: any;
+  data: any = [];
+  invoices: any = [];
 
   constructor(private invoiceService: InvoiceService) {}
 
-  ngOnInit(): void {
-    this.invoiceService.getData().subscribe((response) => {
-      this.data = response;
-      console.log(this.data);
-    });
+  ngOnInit() {
+    this.invoiceService.getData().subscribe(
+      (response) => {
+        this.invoices = response;
+        this.data = response;
+        console.log(this.data);
+      },
+      (error) => {
+        console.error('Error loading data:', error);
+      }
+    );
   }
   search = '';
   cols = [
@@ -39,7 +48,7 @@ export class ListComponent implements OnInit {
     { field: 'createdAt', title: 'Date' },
     { field: 'clientName', title: 'Name' },
     { field: 'total', title: 'Amount' },
-    { field: 'status', title: 'Status' },
+    { field: 'status', title: 'Status', filter: true },
     {
       field: 'actions',
       title: 'Actions',
@@ -48,4 +57,17 @@ export class ListComponent implements OnInit {
       width: '30px',
     },
   ];
+
+  selectedStatus = '';
+
+  filterByStatus() {
+    this.data = this.invoices;
+    if (this.selectedStatus) {
+      this.data = this.invoices.filter(
+        (invoice: any) => invoice.status === this.selectedStatus
+      );
+    } else {
+      this.data = this.invoices; // Reset filter
+    }
+  }
 }
