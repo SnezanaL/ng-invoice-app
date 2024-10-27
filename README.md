@@ -1,27 +1,62 @@
-# NgInvoiceApp
+# Frontend Mentor - Invoice App Solution
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+This is a solution to the [Invoice app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My Process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### The challenge
 
-## Build
+Users should be able to:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete invoices
+- Receive form validations when trying to create/edit an invoice
+- Save draft invoices and mark pending invoices as paid
+- Filter invoices by status (draft/pending/paid)
+- Toggle light and dark mode
+- **Bonus**: Keep track of any changes, even after refreshing the browser (localStorage could be used for this if you're not building out a full-stack app)
 
-## Running unit tests
+### Screenshot
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![](src/assets/img/preview.jpg)
 
-## Running end-to-end tests
+Add a screenshot of your solution here.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Links
 
-## Further help
+- Solution URL: [Add solution URL here](https://github.com/SnezanaL/ng-invoice-app)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## My Process
+
+### Built with
+
+- [Angular](https://angular.io/) - Version 17
+- [Tailwind CSS](https://tailwindcss.com/) - For styling
+- Semantic HTML5 markup
+- Flexbox
+- Mobile-first workflow
+
+### What I learned
+
+During this project, I learned how to effectively use Angular for building dynamic applications, as well as how to implement Tailwind CSS for responsive design. For instance, I implemented a filter by status dropdown to manage invoice visibility based on user selections.
+
+```html
+<!-- Example of HTML code -->
+<h2 class="text-heading-l">Invoices</h2>
+```
