@@ -18,12 +18,7 @@ export class AppComponent {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(loadInvoices());
-
-    console.log(
-      '🚀 ~ AppComponent ~ ngOnInit ~ this.store:',
-      this.store.subscribe((data) => console.log(data))
-    );
+    this?.store?.dispatch(loadInvoices());
   }
   createInvoice() {
     console.log('New Invoice Created');

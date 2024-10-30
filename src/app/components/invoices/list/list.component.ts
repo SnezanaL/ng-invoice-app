@@ -12,8 +12,11 @@ import { Invoice } from '../invoice.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app.state';
 import { InvoiceState } from '../../../state/reducers/invoice.reducer';
-import { loadInvoices } from '../../../state/actions/invoice.actions';
-import { selectAllInvoices } from '../../../state/invoice.selector';
+import {
+  loadInvoices,
+  setFilter,
+} from '../../../state/actions/invoice.actions';
+import { selectFilteredSortedInvoices } from '../../../state/invoice.selector';
 
 @Component({
   selector: 'app-list',
@@ -34,24 +37,30 @@ import { selectAllInvoices } from '../../../state/invoice.selector';
 })
 export class ListComponent implements OnInit {
   data: any = [];
+  invoices: Invoice[] = [];
   invoices$: Observable<Invoice[]>;
 
   constructor(
     private invoiceService: InvoiceService,
     private store: Store<AppState>
   ) {
-    this.invoices$ = this.store.select(selectAllInvoices);
-    console.log(
-      '🚀 ~ ListComponent ~ this.invoices$:',
-      this.invoices$.subscribe((data) => console.log(data))
-    );
+    this.invoices$ = this.store.select(selectFilteredSortedInvoices);
   }
 
   ngOnInit() {
-    // this.invoiceService.getData().subscribe((response) => {
-    //   this.invoices = response;
-    //   this.data = response;
-    //   console.log(this.data);
+    this.invoiceService.getData().subscribe((response) => {
+      this.invoices = response;
+      this.data = response;
+      console.log(this.data);
+    });
+    // this.store.select(selectFilteredSortedInvoices).subscribe((response) => {
+    //   this.invoices = [...response];
+    //   this.data = [...response];
+    //   console.log(
+    //     '🚀 ~ ListComponent ~ this.store.select ~ this.data:',
+    //     this.data
+    //   );
+    //   console.log(response);
     // });
   }
   search = '';
@@ -60,7 +69,11 @@ export class ListComponent implements OnInit {
     { field: 'createdAt', title: 'Date' },
     { field: 'clientName', title: 'Name' },
     { field: 'total', title: 'Amount' },
-    { field: 'status', title: 'Status', filter: true },
+    {
+      field: 'status',
+      title: 'Status',
+      filter: true,
+    },
     {
       field: 'actions',
       title: 'Actions',
@@ -75,14 +88,20 @@ export class ListComponent implements OnInit {
 
   selectedStatus = '';
 
-  // filterByStatus() {
-  //   this.data = this.invoices;
-  //   if (this.selectedStatus) {
-  //     this.data = this.invoices.filter(
-  //       (invoice: Invoice) => invoice.status === this.selectedStatus
-  //     );
-  //   } else {
-  //     this.data = this.invoices; // Reset filter
-  //   }
-  // }
+  filterByStatus() {
+    this.data = this.invoices;
+    if (this.selectedStatus) {
+      this.data = this.invoices.filter(
+        (invoice: Invoice) => invoice.status === this.selectedStatus
+      );
+    } else {
+      this.data = this.invoices; // Reset filter
+    }
+
+    // if (this.selectedStatus) {
+    //   this?.store?.dispatch(setFilter({ filter: this.selectedStatus }));
+    // } else {
+    //   this?.store?.dispatch(setFilter({ filter: '' }));
+    // }
+  }
 }
