@@ -11,7 +11,7 @@ export class InvoiceEffects {
     this.actions$.pipe(
       ofType(InvoiceActions.loadInvoices),
       mergeMap(() =>
-        this.invoiceService.getData().pipe(
+        this.invoiceService.getInvoices().pipe(
           map((invoices) => InvoiceActions.loadInvoicesSuccess({ invoices })),
           catchError((error) =>
             of({ type: '[Invoice] Load Invoices Failure', error })

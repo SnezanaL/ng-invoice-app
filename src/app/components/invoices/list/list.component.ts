@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.invoiceService.getData().subscribe((response) => {
+    this.invoiceService.getInvoices().subscribe((response) => {
       this.invoices = response;
       this.data = response;
       console.log(this.data);
@@ -82,8 +82,12 @@ export class ListComponent implements OnInit {
     },
   ];
 
-  viewInvoice(e: any) {
-    alert(e);
+  getAll() {
+    this.invoiceService.getInvoices().subscribe((response) => {
+      this.invoices = response;
+      this.data = response;
+      console.log(this.data);
+    });
   }
 
   selectedStatus = '';

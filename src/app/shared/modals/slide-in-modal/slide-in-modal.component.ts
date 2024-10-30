@@ -11,9 +11,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class SlideInModalComponent {
   @Input() isOpen = false;
   @Output() closed = new EventEmitter<void>();
+  isClosing = false;
 
   closeModal() {
-    this.isOpen = false;
-    this.closed.emit();
+    this.isClosing = true;
+    setTimeout(() => {
+      this.isOpen = false;
+      this.isClosing = false;
+      this.closed.emit();
+    }, 500);
   }
 }

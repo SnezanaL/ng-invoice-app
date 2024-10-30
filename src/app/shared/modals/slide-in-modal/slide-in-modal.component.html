@@ -1,11 +1,18 @@
 <div
-  *ngIf="isOpen"
-  class="fixed inset-0 bg-gray-900 bg-opacity-50 bg-contain flex justify-start items-start z-50 duration-300"
+  *ngIf="isOpen || isClosing"
+  class="fixed inset-0 bg-gray-900 bg-opacity-50 bg-contain flex justify-start items-start z-50 translate-x-3 transition-all duration-300"
+  [ngClass]="{
+    'animate-opacity': isOpen && !isClosing,
+    'animate-opacityReverse ': isClosing
+  }"
   (click)="closeModal()"
 >
   <div
     class="w-64 h-full bg-white shadow-lg animate animate-fadeInFromLeft"
-    [ngClass]="isOpen ? 'animate-fadeInFromLeft' : 'animate-fadeOutToRight'"
+    [ngClass]="{
+      'animate-fadeInFromLeft': isOpen && !isClosing,
+      'animate-fadeOutToLeft': isClosing
+    }"
     (click)="$event.stopPropagation()"
   >
     <!-- Close button -->
@@ -18,8 +25,7 @@
 
     <!-- Modal content -->
     <div class="p-6">
-      <h2 class="text-xl font-bold mb-4">Modal Title</h2>
-      <p>Modal content goes here.</p>
+      <ng-content></ng-content>
     </div>
   </div>
 </div>

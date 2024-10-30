@@ -97,11 +97,31 @@ module.exports = {
           "0%": { opacity: "0", transform: "translateX(40px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        fadeOutToLeft: {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(-40px)" },
+        },
+        opacity: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        opacityReverse: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         fadeInFromTop: "fadeInFromTop 2s ease-in-out",
         fadeInFromLeft: "fadeInFromLeft 1s ease-in-out",
         fadeInFromRight: "fadeInFromRight 1s ease-in-out",
+        fadeOutToLeft: "fadeOutToLeft 1s ease-in-out",
+        opacity: "opacity 1s ease-in-out",
+        opacityReverse: "opacityReverse 1s ease-in-out",
+        scaleIn: "scaleIn 0.5s ease-in-out",
       },
     },
   },
