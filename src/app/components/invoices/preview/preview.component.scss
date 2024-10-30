@@ -1,0 +1,13 @@
+.badge {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  &::before {
+    content: "•";
+    margin-right: 0.2em;
+    vertical-align: middle;
+    font-size: 2em;
+    top: 1.7px;
+    position: relative;
+  }
+}

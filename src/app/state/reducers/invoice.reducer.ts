@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as InvoiceActions from '../actions/invoice.actions';
-import { Invoice } from '../../components/invoices/invoice.model';
+import { Invoice } from '../../models/invoice.model';
 
 export interface InvoiceState {
   invoices: Invoice[];

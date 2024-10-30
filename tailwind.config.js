@@ -18,22 +18,22 @@ module.exports = {
         black: "#141625",
         success: {
           DEFAULT: "#33D69F",
-          light: "#f4fdfa",
+          light: "#e6fff7",
           "dark-light": "rgba(0,171,85,.15)",
         },
         danger: {
           DEFAULT: "#e7515a",
-          light: "#fff5f5",
+          light: "#ffefd7",
           "dark-light": "rgba(231,81,90,.15)",
         },
         warning: {
           DEFAULT: "#FF8F00",
-          light: "#fff9f0",
+          light: "#fff3e2",
           "dark-light": "rgba(226,160,63,.15)",
         },
         info: {
           DEFAULT: "#373B53",
-          light: "#f8f8fb",
+          light: "#f9fafe",
           // "dark-light": "rgba(33,150,243,.15)",
         },
       },
@@ -89,9 +89,19 @@ module.exports = {
           "0%": { opacity: "0", transform: "translateY(-40px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        fadeInFromLeft: {
+          "0%": { opacity: "0", transform: "translateX(-40px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        fadeInFromRight: {
+          "0%": { opacity: "0", transform: "translateX(40px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         fadeInFromTop: "fadeInFromTop 2s ease-in-out",
+        fadeInFromLeft: "fadeInFromLeft 1s ease-in-out",
+        fadeInFromRight: "fadeInFromRight 1s ease-in-out",
       },
     },
   },

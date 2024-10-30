@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Invoice } from '../../components/invoices/invoice.model';
+import { Invoice } from '../../models/invoice.model';
 
 export const loadInvoices = createAction('[Invoice] Load Invoices');
 export const loadInvoicesSuccess = createAction(

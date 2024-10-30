@@ -8,7 +8,7 @@ import { IconArrowRightComponent } from '../../../shared/icons/icon-arrow-right'
 import { ButtonComponent } from '../../button/button.component';
 import { filter, map, Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
-import { Invoice } from '../invoice.model';
+import { Invoice } from '../../../models/invoice.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app.state';
 import { InvoiceState } from '../../../state/reducers/invoice.reducer';

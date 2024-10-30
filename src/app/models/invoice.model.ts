@@ -1,12 +1,12 @@
 export interface Invoice {
   id: string;
-  createdAt: string; // Može se koristiti Date ako je parsirano kao datum
-  paymentDue: string; // Takođe može biti Date
+  createdAt: string;
+  paymentDue: string;
   description: string;
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: 'pending' | 'paid' | 'draft'; // Primer sa mogućim statusima
+  status: 'pending' | 'paid' | 'draft';
   senderAddress: Address;
   clientAddress: Address;
   items: Item[];

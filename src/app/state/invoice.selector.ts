@@ -2,7 +2,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { AppState } from './app.state';
 import { InvoiceState } from './reducers/invoice.reducer';
-import { Invoice } from '../components/invoices/invoice.model';
+import { Invoice } from '../models/invoice.model';
 
 export const selectInvoiceState =
   createFeatureSelector<InvoiceState>('invoices');

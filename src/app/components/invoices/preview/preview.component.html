@@ -1,11 +1,109 @@
-<div *ngIf="invoice">
-  <h2>Invoice Details</h2>
-  <p><strong>ID:</strong> {{ invoice.id }}</p>
-  <p><strong>Client Name:</strong> {{ invoice.clientName }}</p>
-  <p><strong>Date:</strong> {{ invoice.createdAt }}</p>
-  <p><strong>Total Amount:</strong> {{ invoice.total }}</p>
-  <p><strong>Status:</strong> {{ invoice.status }}</p>
+<div *ngIf="invoice" class="p-8 min-h-screen">
+  <button class="text-licoriceBlack font-semibold mb-4 flex items-center">
+    <icon-arrow-left class="mr-4 text-primary"></icon-arrow-left>
+    Go back
+  </button>
+
+  <!-- Status and Actions -->
+  <div
+    class="flex justify-between items-center mb-8 shadow-md rounded-lg bg-white p-6"
+  >
+    <span class="text-sm font-semibold text-gray-500">Status</span>
+    <span
+      class="badge px-6"
+      [ngClass]="[
+        invoice.status.toLowerCase() === 'paid'
+          ? 'badge-outline-success'
+          : invoice.status.toLowerCase() === 'pending'
+          ? 'badge-outline-warning'
+          : 'badge-outline-info'
+      ]"
+      >{{ invoice.status }}</span
+    >
+
+    <div class="flex space-x-2">
+      <app-button (click)="openModal()" buttonText="Edit" buttonType="default">
+      </app-button>
+      <app-button buttonText="Delete" buttonType="danger"> </app-button>
+      <app-button buttonText="Mark as Paid" buttonType="primary"> </app-button>
+    </div>
+  </div>
+
+  <!-- Invoice Info -->
+  <div class="shadow-md rounded-lg bg-white p-6">
+    <div class="grid grid-cols-2 gap-8 mb-6">
+      <div>
+        <p class="font-bold">{{ invoice.id }}</p>
+        <p class="text-sm text-gray-500">{{ invoice.description }}</p>
+      </div>
+      <div class="text-right">
+        <p class="text-sm text-gray-500">
+          {{ invoice.senderAddress.street }}
+        </p>
+        <p class="text-sm text-gray-500">{{ invoice.senderAddress.city }}</p>
+        <p class="text-sm text-gray-500">
+          {{ invoice.senderAddress.country }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Dates and Recipient Info -->
+    <div class="grid grid-cols-3 gap-8 mb-6">
+      <div>
+        <p class="text-sm text-gray-500">Invoice Date</p>
+        <p class="font-semibold">{{ invoice.createdAt }}</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500">Bill To</p>
+        <p class="font-semibold">{{ invoice.clientName }}</p>
+        <p class="text-sm text-gray-500">
+          {{ invoice.clientAddress.street }}
+        </p>
+        <p class="text-sm text-gray-500">
+          {{ invoice.clientAddress.city }},
+          {{ invoice.clientAddress.postCode }}
+        </p>
+        <p class="text-sm text-gray-500">
+          {{ invoice.clientAddress.country }}
+        </p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500">Sent to</p>
+        <p class="font-semibold">{{ invoice.clientEmail }}</p>
+      </div>
+    </div>
+
+    <!-- Item List -->
+    <div class="bg-info-light p-6 rounded-lg mb-4">
+      <div
+        class="grid grid-cols-4 gap-4 font-semibold text-glaucous mb-8 w-full"
+      >
+        <span>Item Name</span>
+        <span class="text-center">QTY.</span>
+        <span class="text-end">Price</span>
+        <span class="text-end">Total</span>
+      </div>
+      <div *ngFor="let item of invoice.items">
+        <div class="grid grid-cols-4 gap-4 mt-2 font-semibold mb-4 w-full">
+          <span class="">{{ item.name }}</span>
+          <span class="text-glaucous text-center">{{ item.quantity }}</span>
+          <span class="text-glaucous text-end">£{{ item.price }}</span>
+          <span class="text-end">£{{ item.total }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amount Due -->
+    <div
+      class="flex justify-between items-center bg-info text-white p-6 rounded-lg"
+    >
+      <span class="font-semibold">Amount Due</span>
+      <span class="text-lg font-bold">£{{ invoice.total }}</span>
+    </div>
+  </div>
 </div>
-<div *ngIf="!invoice">
-  <p>Loading...</p>
-</div>
+
+<app-slide-in-modal
+  [isOpen]="isModalOpen"
+  (closed)="isModalOpen = false"
+></app-slide-in-modal>
